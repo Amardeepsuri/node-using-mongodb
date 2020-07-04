@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 const app = express();
@@ -12,7 +13,11 @@ app.get('/', (req, res) =>
     res.send(`Store server running on port ${PORT}`)
 );
 
-mongoose.connect('mongodb://localhost:27017/productsdb', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/productsdb', {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
 
 app.listen(PORT, () => 
     console.log(`Your server is running on port ${PORT}`)

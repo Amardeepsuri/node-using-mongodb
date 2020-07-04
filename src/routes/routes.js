@@ -1,6 +1,10 @@
-import { controllers } from "../controllers/controllers";
+import { addnewProduct, getProducts, getProductWithID } from "../controllers/controllers";
 
-const routes = (app) => { 
+export const routes = (app) => { 
     app.route('/products');
     app.post(addnewProduct);
+    app.get(getProducts);
+
+    app.route('/products/:ProductID');
+    app.get(getProductWithID);
  };

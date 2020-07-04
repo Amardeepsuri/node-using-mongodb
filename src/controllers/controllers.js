@@ -29,3 +29,18 @@ export const addnewProduct = (req, res) => {
         res.json(Product);
     })
 }
+
+export const updateProduct = (req, res) => {
+    if(!req.body){
+        return res.err("request false");
+    }
+    Product.findOneAndUpdate({ _id: req.params.ProductID }, req.body, { new: true, useFindAndModify: false }, (err, Product) => {
+        res.json(Product);
+    })
+}
+
+export const deleteProduct = (req, res) => {
+    Product.deleteOne({ _id: req.params.ProductID}, (err, Product) => {
+        res.json({ message: 'successfully deleted product' });
+    })
+}
